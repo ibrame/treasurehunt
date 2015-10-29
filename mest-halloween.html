@@ -196,7 +196,7 @@
                 
                 game = getQueryVariable('game');
                 
-                var failAudio = [new Audio("https://s3-us-west-2.amazonaws.com/herfricalabs/WilhelmScream.mp3"), new Audio('https://s3-us-west-2.amazonaws.com/herfricalabs/239900__thesubber13__scream-1.ogg')];
+                var failAudio = new Audio('https://s3-us-west-2.amazonaws.com/herfricalabs/239900__thesubber13__scream-1.ogg'); //[new Audio("https://s3-us-west-2.amazonaws.com/herfricalabs/WilhelmScream.mp3"), new Audio('https://s3-us-west-2.amazonaws.com/herfricalabs/239900__thesubber13__scream-1.ogg')];
                 var successAudio = new Audio("https://s3-us-west-2.amazonaws.com/herfricalabs/253532__nanakisan__evil-laugh-8.wav");
                 var luckyNum = Math.floor(Math.random() * (25 - 1 + 1)) + 1;
                 
@@ -234,7 +234,8 @@
                         var fail = Math.floor(Math.random() * ($failSites.length - 1)) + 1;
                         $('.resultText span').html('<h1>You opened '+$failSites[fail].title);
                         $('.resultText img').attr('src', $failSites[fail].url);
-                        failAudio[Math.floor(Math.random() * 2)].play();
+                        //failAudio[Math.floor(Math.random() * 2)].play();
+                        failAudio.play();
                         $('#TheLink').attr('href', $failSites[fail].url);
                         //$('#TheLink')[0].click();
                         $(this).parent().find('.back').find('.num').html("<div style='color : #fff;'>Fail!!!</div>");

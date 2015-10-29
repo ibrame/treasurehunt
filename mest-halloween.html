@@ -207,7 +207,7 @@
                         $('.content').append("<div class='pick'><div class='num'>r:"+r+"</div></div>");
                     }*/
                     if(i == 15 || i == 25){
-                        $('.content').append("<div style='width : 100%; height : 120px; float : left;'>"+adString+"</div>");
+                        $('.content').append("<div style='width : 100%; height : 120px; display : table; padding : 10px; overflow : hidden; float : left;'>"+adString+"</div>");
                     }
                 }
                 
@@ -223,7 +223,7 @@
                 
                 $(document).on('click', '.front', function(){
                     if(parseInt($(this).find('.num').text()) == luckyNum){
-                       $('.resultText span').html('<h1>Congratulations! You opened Meltwater.org! <br/>next time, you wont be so lucky!');
+                       $('.resultText span').html('<h1>Congratulations! You opened MEST! <br/>next time, you wont be so lucky!');
                        successAudio.play();
                        $('.num').html("<div style='color : #fff;'>"+luckyNum+"</div>");
                        $('.resultText img').attr('src', 'https://pbs.twimg.com/profile_images/595568237359697920/LAOG2PeI.png');

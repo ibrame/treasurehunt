@@ -1,0 +1,254 @@
+<!-- pick a number, web minefield -->
+<!DOCTYPE HTML>
+<HTML>
+    <HEAD>
+        <title>MEST Halloween</title>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:url"           content="http://ibrame.github.io/treasurehunt/mest-halloween.html" />
+        <meta property="og:type"          content="website" />
+        <meta property="og:title"         content="MEST Halloween" />
+        <meta property="og:description"   content="1 box leads to MEST, the rest will give you nightmares!" />
+        <meta property="og:image"         content="https://pbs.twimg.com/profile_images/595568237359697920/LAOG2PeI.png" />
+        <script src='https://s3-us-west-2.amazonaws.com/herfricalabs/adcode.js'></script>
+        <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
+        <style>
+            *,
+            *:before,
+            *:after{
+                margin : 0;
+                padding : 0;
+                box-sizing : border-box;
+                -webkit-box-sizing : border-box;
+                -moz-box-sizing : border-box;
+                -o-box-sizing : border-box;
+            }
+            html, body{
+                width : 100%;
+                font-family : segoe ui;
+            }
+            .content{
+                margin : 0 auto;
+                #display : table;
+            }
+           .pick{
+                position : relative;
+                float : left;
+                background : #fff;
+                border : 10px solid #37c8ab;
+                width : 20%;
+                height : 200px;
+                cursor : pointer;
+                perspective: 800px;
+                -webkit-perspective : 800px;
+                -moz-perspective : 800px;
+                -o-perspective : 800px;
+            }
+            .card{
+                position : relative;
+                width : 100%;
+                height : 100%;
+                transform-style: preserve-3d;
+                transition: transform 0.7s;
+            }
+            .card .front, .card .back{
+                width : 100%;
+                height : 100%;
+                position: absolute;
+                backface-visibility: hidden;
+            }
+            .front{
+            }
+            .back{
+                background : #536c67;
+                transform: rotateY( 180deg );
+                color : #fff;
+            }
+            .flipped{
+                transform: rotateY( 180deg );
+            }
+            .num{
+                position : absolute;
+                width : 48px;
+                height : 48px;
+                margin : auto;
+                left : 0; right : 0;
+                top : 0; bottom : 0;
+                font-size : 28px;
+                color : #000;
+                text-align : center;
+                padding : 0;
+            }
+            .intro{
+                text-align : center;
+                font-size : 24px;
+                padding : 5px;
+                padding-bottom : 10px;
+                padding-left : 20px;
+                padding-right : 20px;
+                display : table;
+                width : 100%;
+            }
+            .button{
+                padding : 5px;
+                padding-left : 10px;
+                padding-right : 10px;
+                margin-top : 20px;
+                border : 3px solid #37c8ab;
+                font-size : 14px;
+            }
+            .button a{
+                display : block;
+                width : 100%;
+                height : 100%;
+                color : #000;
+            }
+            .title{
+                position : absolute; left : 0; right : 0;
+            }
+            .theimg{
+                width : 90%; margin : 0 auto;
+                height : 240px;
+            }
+            .theimg img{
+                width : 100%;
+                height : auto;
+            }
+            @media only screen and (max-width: 1023px){
+                .title{
+                    position : relative;
+                }
+            }
+            @media only screen and (max-width: 480px){
+                .intro{
+                    font-size : 22px;
+                    padding-left : 5px;
+                    padding-right : 5px;
+                }
+                .pick{
+                    height : 96px;
+                }
+                .num{
+                    width : 28px;
+                    height : 28px;
+                    font-size : 14px;
+                }
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    </HEAD>
+    <BODY>
+        <div class='result' style='display : none; z-index : 10; position : fixed; top : 0px; width : 100%; height: 100%; background : rgba(0, 0, 0, 0.5);'>
+            <div class='resultText' style='position : absolute; margin : auto; left : 0; right : 0; top : 0; bottom : 0; background : #fff; width : 320px; height : 480px; text-align : center; padding : 10px;'>
+                <span><h1>Opening MEST in new tab</h1></span>
+                <div class='theimg'>
+                    <img src=''></img>
+                </div>
+                <div class='close' style='cursor : pointer; border : 2px solid #fff; background : #000; color : #fff; padding : 10px; position : absolute; margin : auto; left : 0; right : 0; bottom : 20px; width : 80px; '>Close</div>
+            </div>  
+        </div>
+        <div class='intro'>
+            <div class='button' style='float : left;'>Home</div>
+            <div class='button' style='float : right; font-size : 16px;'>
+                <a href='https://twitter.com/intent/tweet?text=Play%20Mest%20halloween%20on%20TreasureHunt%20-%20https%3A%2F%2Fibrame.github.io%2Ftreasurehunt%2Fmest-halloween.html%20%23TreasureHunt&via=sir_adams'><div style='float : left;'><i class="fa fa-twitter"></i></div></a>
+            </div>
+            <div class='button' style='float : right; font-size : 16px; margin-right : 10px;'>
+                <a href='http://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fibrame.github.io%2Ftreasurehunt%2Fzikoko-halloween.html&t=MEST+Halloween' target="_blank"><div style='float : left;'><i class="fa fa-facebook"></i></div></a>
+            </div>
+            <!--div class='button' style='float : right; margin-right : 10px;'>for your website</div-->
+            <a id='TheLink' style='display : none' target='_blank' href=''>link</a>
+        </div>
+        <div class='intro'>
+            <div class='title' style='position : relative;'>
+                #TreasureHunt<br/>MEST Halloween.<hr/>1 box leads to MEST. The rest will give you nightmares...
+            </div>
+            <a id='TheLink' style='display : none' target='_blank' href=''>link</a>
+        </div>
+        <div class='content'>
+        
+        </div>
+        <div class='credits' style='padding : 10px;'>
+            <h3>Who made this?</h3>
+            Adams Ibrahim: Twitter: <a href='http://twitter.com/sir_adams'>@sir_adams</a><br/> 
+            Adeyemi Segun: <a href='https://twitter.com/Segs_Adeyemi'>@Segs_Adeyemi</a><br/>
+            Gold Usenekong: <a href='https://twitter.com/GoldUsenekong'>@GoldUsenekong</a><br/>
+            for HERfrica media lab: <a href='http://www.herfrica.com'>HERfrica.com</a><br/>
+            <br/><br/>
+            <h3>Sounds:</h3>
+            Nanakisan - <a href='https://www.freesound.org/people/Nanakisan/sounds/253524/'>Evil Laugh</a><br/>
+            TheSubber13: <a href='https://www.freesound.org/people/TheSubber13/sounds/239900/'>Loud Scream</a><br/>
+            WilhelmScream<br/>
+            
+        </div>
+        <script>
+            function getQueryVariable(variable)
+            {
+                   var query = window.location.search.substring(1);
+                   var vars = query.split("&");
+                   for (var i=0;i<vars.length;i++) {
+                           var pair = vars[i].split("=");
+                           if(pair[0] == variable){return pair[1];}
+                   }
+                   return(false);
+            }
+            
+            $(document).ready(function(){
+                
+                game = getQueryVariable('game');
+                
+                var failAudio = [new Audio("https://s3-us-west-2.amazonaws.com/herfricalabs/WilhelmScream.mp3"), new Audio('https://s3-us-west-2.amazonaws.com/herfricalabs/239900__thesubber13__scream-1.ogg')];
+                var successAudio = new Audio("https://s3-us-west-2.amazonaws.com/herfricalabs/253532__nanakisan__evil-laugh-8.wav");
+                var luckyNum = Math.floor(Math.random() * (25 - 1 + 1)) + 1;
+                
+                for(var i = 1; i < 26; i++){
+                    $('.content').append("<div class='pick'><div class='card'><div class='front'><div class='num'>"+i+"</div></div><div class='back'><div class='num'></div></div></div></div>");
+                    //var r =  Math.floor(Math.random() * (10 - 9 + 1)) + 1;
+                    /*if(i % r == 0){
+                        $('.content').append("<div class='pick'><div class='num'>r:"+r+"</div></div>");
+                    }*/
+                    if(i == 15 || i == 25){
+                        $('.content').append("<div style='width : 100%; height : 120px; float : left;'>"+adString+"</div>");
+                    }
+                }
+                
+                $failSites = [ 
+                    {'title': 'bloody finger', 'url' : 'http://i.imgur.com/I7fuB8x.jpg'}, 
+                    {'title': 'Headless body', 'url' : 'https://s-media-cache-ak0.pinimg.com/236x/d8/af/44/d8af44c60af082b3a3ca979d30ba10e7.jpg'}, 
+                    {'title': 'eyeball popping out', 'url' : 'http://cdn2-b.examiner.com/sites/default/files/styles/image_content_width/hash/42/eb/42eb658cb9056a6ffc7759cfa4e2818e.jpg?itok=g_cDmgop'}, 
+                    {'title': 'rat chewing intestine', 'url' : 'http://cdn.instructables.com/F02/R3EI/HWNUFSKQ/F02R3EIHWNUFSKQ.MEDIUM.jpg'}, 
+                    {'title': 'face rot', 'url' : 'https://s-media-cache-ak0.pinimg.com/236x/14/04/ed/1404ed774bd7e16c3bfe7aad6a822208.jpg'}, 
+                    {'title': 'Zombie', 'url' : 'http://33.media.tumblr.com/cd409926f22a64a616ba78030c5a32a7/tumblr_inline_ndw289zGi11rgbbbr.jpg'},
+                    {'title': 'Teeth!!!', 'url' : 'https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e15/11910259_672206169582547_1703738266_n.jpg'},
+                ];
+                
+                $(document).on('click', '.front', function(){
+                    if(parseInt($(this).find('.num').text()) == luckyNum){
+                       $('.resultText span').html('<h1>Congratulations! You opened Meltwater.org! <br/>next time, you wont be so lucky!');
+                       successAudio.play();
+                       $('.num').html("<div style='color : #fff;'>"+luckyNum+"</div>");
+                       $('.resultText img').attr('src', 'https://pbs.twimg.com/profile_images/595568237359697920/LAOG2PeI.png');
+                       $('.card').addClass('flipped');
+                       setTimeout(function() { window.location.href='http://meltwater.org/'; }, 3000);
+                       
+                    }else{
+                        var fail = Math.floor(Math.random() * ($failSites.length - 1)) + 1;
+                        $('.resultText span').html('<h1>You opened '+$failSites[fail].title);
+                        $('.resultText img').attr('src', $failSites[fail].url);
+                        failAudio[Math.floor(Math.random() * 2)].play();
+                        $('#TheLink').attr('href', $failSites[fail].url);
+                        //$('#TheLink')[0].click();
+                        $(this).parent().find('.back').find('.num').html("<div style='color : #fff;'>Fail!!!</div>");
+                    }
+                    $(this).parent().addClass('flipped');
+                    
+                    $('.result').show();
+                });
+                
+                $(document).on('click', '.close', function(){
+                    $('.result').hide();
+                });
+            });
+        </script>
+
+    </BODY>
+</HTML>
